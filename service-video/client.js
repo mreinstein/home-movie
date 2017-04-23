@@ -19,4 +19,17 @@ async function getVideoList() {
   return result
 }
 
-getVideoList()
+async function renderVideoList() {
+  const videos = await getVideoList()
+  for(let i=0; i < videos.length; i++) {
+    let a = document.createElement('a')
+    a.innerText = videos[i]
+    a.addEventListener('click', function(ev) {
+      ev.preventDefault()
+      console.log('TODO: play::', videos[i])
+    })
+    document.body.appendChild(a)
+  }
+}
+
+renderVideoList()
