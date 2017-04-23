@@ -1,0 +1,17 @@
+{
+  "name": "service-video",
+  "version": "0.0.1",
+  "description": "http video streaming server",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "mime": "^1.3.4",
+    "range-parser": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}

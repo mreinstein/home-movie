@@ -1,0 +1,17 @@
+{
+  "name": "service-cast",
+  "version": "0.0.1",
+  "description": "encapsulates chromecast connection",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "castnow": "^0.4.18",
+    "chromecast-api": "^0.2.5",
+    "ws": "^2.3.1"
+  }
+}
