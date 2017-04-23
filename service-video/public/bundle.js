@@ -28,8 +28,8 @@ async function renderVideoList() {
     a.innerText = videos[i]
     a.addEventListener('click', function(ev) {
       ev.preventDefault()
-      console.log('playing', `http://media-server:8000/videos/${videos[i]}`)
-      up.send(JSON.stringify(JSON.stringify({ type: 'PLAY', mediaUrl: `http://media-server:8000/videos/${videos[i]}` })))
+      console.log('playing', `http://192.168.42.74:8000/videos/${videos[i]}`)
+      up.send(JSON.stringify(JSON.stringify({ type: 'PLAY', mediaUrl: `http://192.168.42.74:8000/videos/${videos[i]}` })))
     })
 
     let p = document.createElement('p')
