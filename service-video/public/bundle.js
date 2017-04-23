@@ -10,8 +10,17 @@ up.subscribe('message', function(data) {
   console.log('recvd message!:', data)
 })
 
-//up.connect('ws://192.168.42.74:8002')
-up.connect('ws://127.0.0.1:8002')
+up.connect('ws://media-server:8002')
+
+
+async function getVideoList() {
+  const reponse = await fetch('/videos')
+  const result = await response.json()
+  console.log('result:', result)
+  return result
+}
+
+getVideoList()
 
 },{"upsocket":6}],2:[function(require,module,exports){
 'use strict';
