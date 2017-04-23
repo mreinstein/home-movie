@@ -11,44 +11,18 @@ function send(conn, message) {
 }
 
 
+function castDeviceDiscovered(device) {
+  console.log('discovered chromecast device:', device)
+  castDevice = device
+}
+
+
+let castDevice
+
 const browser = new ChromecastAPI.Browser()
+browser.on('deviceOn', castDeviceDiscovered)
 
-browser.on('deviceOn', function (device) {
-  // can use this format to stream a video right from the internet
-  //const urlMedia = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4'
-
-  // streaming from the local media server
-  const urlMedia = 'http://192.168.42.74:8000/the_last_picture_show_1971.mp4'
-
-  device.play(urlMedia, 0, function() {
-    console.log(`casting ${urlMedia}`)
-
-    /*
-    setTimeout(function () {
-      //Pause the video
-      device.pause(function () {
-        console.log('Paused')
-      })
-    }, 20000)
-
-    setTimeout(function () {
-      //Stop video
-      device.stop(function () {
-        console.log('Stopped')
-      })
-    }, 30000)
-
-    setTimeout(function () {
-      //Close the streaming
-      device.close(function () {
-        console.log('Closed')
-      })
-    }, 40000)
-    */
-  })
-})
-
-const port = 8001
+const port = 8002
 const server = new WebSocketServer({ port })
 
 server.on('connection', function handleNewClient(client) {
@@ -61,9 +35,38 @@ server.on('connection', function handleNewClient(client) {
       return
     }
 
+    // no cast device found or ready, ignore follow up commands
+    if (!castDevice) return
+
+    if(message.type === 'PLAY') {
+      const secondsElapsed = message.secondsElapsed || 0
+
+      // can use this format to stream a video right from the internet
+      // http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4
+      // streaming from the local media server
+      // http://192.168.42.74:8000/videos/the_last_picture_show_1971.mp4
+      castDevice.play(message.mediaUrl, secondsElapsed, function() {
+        console.log(`casting ${message.mediaUrl}`)
+      })
+    } else if (message.type === 'PAUSE') {
+      castDevice.pause(function() {
+        console.log('paused')
+      })
+    } else if (message.type === 'STOP') {
+      castDevice.stop(function() {
+        console.log('stopped')
+      })
+    } else if (message.type === 'CLOSE') {
+      castDevice.close(function() {
+        console.log('closed')
+      })
+    }
     console.log('new connection')
+
     //client.close()
   })
+
+  //client.send(JSON.stringify({ type: 'INTRO' }))
 })
 
 console.log(`casting service running at http://localhost:${port}`)
