@@ -22,16 +22,17 @@ async function getVideoList() {
 async function renderVideoList() {
   const videos = await getVideoList()
   for(let i=0; i < videos.length; i++) {
-    let a = document.createElement('a')
+    const a = document.createElement('a')
     a.href = '#'
     a.innerText = videos[i]
     a.addEventListener('click', function(ev) {
       ev.preventDefault()
-      console.log('playing', `http://192.168.42.74:8000/videos/${videos[i]}`)
-      up.send(JSON.stringify(JSON.stringify({ type: 'PLAY', mediaUrl: `http://192.168.42.74:8000/videos/${videos[i]}` })))
+      const mediaUrl = `http://192.168.42.74:8000/videos/${videos[i]}`
+      console.log('playing', mediaUrl)
+      up.send(JSON.stringify({ type: 'PLAY', mediaUrl }))
     })
 
-    let p = document.createElement('p')
+    const p = document.createElement('p')
     p.appendChild(a)
     document.body.appendChild(p)
   }
