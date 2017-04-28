@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set up unattended-upgrades
-sudo apt-get install unattended-upgrades apt-listchanges bsd-mailx -y
+sudo apt-get install unattended-upgrades -y
 
 sudo sed -i 's/^\/\/      "o=Raspbian,n=jessie"/      "o=Raspbian,n=jessie"/g' /etc/apt/apt.conf.d/50unattended-upgrades
 
