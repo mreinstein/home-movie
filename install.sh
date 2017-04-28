@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # set up unattended-upgrades
 sudo apt-get install unattended-upgrades apt-listchanges bsd-mailx -y
 
