@@ -23,10 +23,10 @@ const browser = new ChromecastAPI.Browser()
 browser.on('deviceOn', castDeviceDiscovered)
 
 const port = 8002
-const server = new WebSocketServer({ port })
+const server = new WebSocketServer({ perMessageDeflate: true, port })
 
 server.on('connection', function handleNewClient(client) {
-  client.once('message', function(message, flags) {
+  client.once('message', function(message) {
     try {
       message = JSON.parse(message)
     } catch(er) {
