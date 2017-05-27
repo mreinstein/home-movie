@@ -6,7 +6,6 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.15.2",
-    "lookup-multicast-dns": "^1.0.3",
     "ls": "^0.2.1",
     "register-multicast-dns": "^1.1.0",
     "upsocket": "^2.0.0"
