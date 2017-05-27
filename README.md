@@ -2,7 +2,6 @@
 
 experimentation around streaming video via chromecast
 
-
 ```
 |- service-cast/
 `- service-video/

@@ -1,15 +1,9 @@
 'use strict'
 
-const express = require('express')
-const ls      = require('ls')
-//const serve   = require('serve')
+const express  = require('express')
+const ls       = require('ls')
+const register = require('register-multicast-dns')
 
-
-/*
-const videoServer = serve('/home/pi/media', {
-  port: 8000
-})
-*/
 
 const app = express()
 
@@ -20,7 +14,6 @@ app.get('/videos', function(req, res) {
   const fileNames = []
   for (let file of allFiles) {
     fileNames.push(file.file)
-    //console.log(file.name, 'is', file.stat.size);
   }
 
   res.json(fileNames)
@@ -31,4 +24,7 @@ app.use('/videos', express.static('/home/pi/media'))
 const port = 8000
 app.listen(port)
 
-console.log(`video service running at http://localhost:${port}`)
+console.log('registering movies.local')
+register('movies')
+
+console.log(`video service running at http://movies.local:${port}`)

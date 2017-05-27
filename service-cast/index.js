@@ -2,6 +2,7 @@
 
 const ChromecastAPI   = require('chromecast-api')
 const WebSocketServer = require('ws').Server
+const register        = require('register-multicast-dns')
 
 
 function send(conn, message) {
@@ -69,4 +70,6 @@ server.on('connection', function handleNewClient(client) {
   //client.send(JSON.stringify({ type: 'INTRO' }))
 })
 
-console.log(`casting service running at http://localhost:${port}`)
+console.log('registering movie-cast.local')
+register('movies-cast')
+console.log(`casting service running at ws://movies-cast.local:${port}`)
