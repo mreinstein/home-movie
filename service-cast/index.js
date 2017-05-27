@@ -2,7 +2,9 @@
 
 const ChromecastAPI   = require('chromecast-api')
 const WebSocketServer = require('ws').Server
+const lookup          = require('lookup-multicast-dns')
 const register        = require('register-multicast-dns')
+const url             = require('url')
 
 
 function send(conn, message) {
@@ -46,9 +48,18 @@ server.on('connection', function handleNewClient(client) {
       // http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4
       // streaming from the local media server
       // http://192.168.42.74:8000/videos/the_last_picture_show_1971.mp4
-      castDevice.play(message.mediaUrl, secondsElapsed, function() {
-        console.log(`casting ${message.mediaUrl}`)
+
+      const result = url.parse(message.mediaUrl)
+
+      lookup(result.hostname, function(err, ip) {
+        result.hostname = ip
+        result.host = undefined
+        const mediaUrl = url.format(result)
+        castDevice.play(mediaUrl, secondsElapsed, function() {
+          console.log(`casting ${mediaUrl}`)
+        })
       })
+
     } else if (message.type === 'PAUSE') {
       castDevice.pause(function() {
         console.log('paused')

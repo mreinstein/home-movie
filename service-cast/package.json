@@ -12,6 +12,7 @@
   "dependencies": {
     "castnow": "^0.4.18",
     "chromecast-api": "^0.2.5",
+    "lookup-multicast-dns": "^1.0.3",
     "register-multicast-dns": "^1.1.0",
     "ws": "^3.0.0"
   }
