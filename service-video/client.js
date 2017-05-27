@@ -1,6 +1,5 @@
 'use strict'
 
-const lookup   = require('lookup-multicast-dns')
 const upsocket = require('upsocket')
 
 
@@ -10,10 +9,7 @@ up.subscribe('message', function(data) {
   console.log('recvd message!:', data)
 })
 
-lookup('movies-cast.local', function (err, ip) {
-  console.log(ip) // is resolved using multicast-dns (192.168.10.254 on my machine)
-  up.connect(`ws://${ip}:8002`)
-})
+up.connect('ws://movies-cast.local:8002')
 
 async function getVideoList() {
   const response = await fetch('/videos')
