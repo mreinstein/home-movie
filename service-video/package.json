@@ -11,8 +11,8 @@
     "upsocket": "^2.1.0"
   },
   "devDependencies": {
-    "browserify": "^14.5.0",
-    "watchify": "^3.9.0"
+    "browserify": "^15.2.0",
+    "watchify": "^3.10.0"
   },
   "scripts": {
     "build": "browserify client.js -o public/bundle.js",
