@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# port forward port 80 to local port 8000
+sudo iptables -t nat -D PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8000
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8000
+sudo apt-get install iptables-persistent
+
+
 # set up unattended-upgrades
 sudo apt-get install unattended-upgrades -y
 
