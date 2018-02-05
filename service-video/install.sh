@@ -1,9 +1,13 @@
 #!/bin/bash
 
 # install node/npm
-curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 
-sudo apt-get install -y nodejs build-essential
+# port forward port 80 to local port 8000
+sudo iptables -t nat -D PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8000
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8000
+
+sudo apt-get install -y nodejs build-essential iptables-persistent
 
 sudo apt-get update
 
