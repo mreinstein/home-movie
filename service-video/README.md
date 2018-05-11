@@ -32,5 +32,5 @@ ffmpeg -i movie.avi movie.mp4
 be sure to set up passwordless login (pem login.) Then:
 
 ```bash
-scp *.mp4 pi@<local ip address>:media/
+scp *.mp4 pi@address:/path/to/destination/
 ```
