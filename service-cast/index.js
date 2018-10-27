@@ -39,7 +39,8 @@ server.on('connection', function handleNewClient(client) {
     }
 
     // no cast device found or ready, ignore follow up commands
-    if (!castDevice) return
+    if (!castDevice)
+      return
 
     if(message.type === 'PLAY') {
       const secondsElapsed = message.secondsElapsed || 0
