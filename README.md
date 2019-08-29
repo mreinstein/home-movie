@@ -3,8 +3,8 @@
 experimentation around streaming video via chromecast
 
 ```
-|- service-cast/
-`- service-video/
+├-service-cast/
+└-service-video/
 ```
 
 * `service-cast`
@@ -20,3 +20,4 @@ experimentation around streaming video via chromecast
 * https://www.npmjs.com/package/movie-list
 * https://www.npmjs.com/package/omdb
 * https://www.npmjs.com/package/moviedb
+* https://freefrontend.com/css-movie-cards/
