@@ -7,7 +7,7 @@ Type=simple
 User=pi
 Group=pi
 WorkingDirectory=/home/pi/home-movie/service-cast
-ExecStart=/usr/bin/node /home/pi/home-movie/service-cast/index.js
+ExecStart=/usr/bin/node -r esm /home/pi/home-movie/service-cast/index.js
 Environment="NODE_ENV=production"
 Environment="AWS_REGION=us-east-1"
 Restart=on-failure
