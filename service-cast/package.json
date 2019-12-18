@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node -r esm index.js"
   },
   "author": "Mike Reinstein",
   "license": "MIT",

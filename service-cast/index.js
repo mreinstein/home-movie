@@ -1,10 +1,8 @@
-'use strict'
-
-const ChromecastAPI   = require('chromecast-api')
-const WebSocketServer = require('ws').Server
-const lookup          = require('lookup-multicast-dns')
-const register        = require('register-multicast-dns')
-const url             = require('url')
+import ChromecastAPI from 'chromecast-api'
+import { Server }    from 'ws'
+import lookup        from 'lookup-multicast-dns'
+import register      from 'register-multicast-dns'
+import url           from 'url'
 
 
 function send(conn, message) {
@@ -26,7 +24,7 @@ const browser = new ChromecastAPI.Browser()
 browser.on('deviceOn', castDeviceDiscovered)
 
 const port = 8002
-const server = new WebSocketServer({ perMessageDeflate: true, port })
+const server = new Server({ perMessageDeflate: true, port })
 
 server.on('connection', function handleNewClient(client) {
   client.once('message', function(message) {

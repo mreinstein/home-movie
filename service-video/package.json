@@ -6,20 +6,22 @@
   "main": "index.js",
   "dependencies": {
     "cors": "^2.8.5",
+    "esm": "^3.2.25",
     "express": "^4.16.3",
     "ls": "^0.2.1",
     "register-multicast-dns": "^1.1.0",
     "upsocket": "^2.1.0"
   },
   "devDependencies": {
-    "browserify": "^15.2.0",
-    "watchify": "^3.11.0"
+    "rollup": "^1.27.13",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
   },
   "scripts": {
-    "build": "browserify client.js -o public/bundle.js",
-    "start": "node index.js",
-    "start-dev": "npm start & npm run watch",
-    "watch": "watchify client.js -v -o public/bundle.js"
+    "build": "rollup -c rollup.config.js",
+    "start": "node -r esm index.js",
+    "dev": "npm start & npm run watch",
+    "watch": "rollup -c rollup.config.js --watch.chokidar"
   },
   "author": "Mike Reinstein",
   "license": "MIT"

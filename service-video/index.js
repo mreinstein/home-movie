@@ -1,9 +1,7 @@
-'use strict'
-
-const cors     = require('cors')
-const express  = require('express')
-const ls       = require('ls')
-const register = require('register-multicast-dns')
+import cors     from 'cors'
+import express  from 'express'
+import ls       from 'ls'
+import register from 'register-multicast-dns'
 
 
 const app = express()
